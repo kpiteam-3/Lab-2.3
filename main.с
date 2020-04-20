@@ -1,0 +1,26 @@
+#include "stm32f10x.h"
+#define POW_SLOW      1000000
+#define POW_FAST      100000
+void delay_(int i);
+
+int main(void){ 
+      // Активируем таймер PORTB    
+      RCC -> APB2ENR |= RCC_APB2ENR_IOPBEN;
+			
+      GPIOB -> CRL &= 0; 
+      GPIOB -> CRL |= GPIO_CRL_MODE; 
+  
+        for(;;){
+               delay_(POW_SLOW); 
+                GPIOB -> ODR |= GPIO_ODR_ODR0;
+              delay_(POW_SLOW);
+                GPIOB -> ODR &= ~(GPIO_ODR_ODR0);
+              }
+    }
+
+void delay_(int del){
+  int i = 0;
+    for(i=0;i<del;i++){
+      ;
+      }
+}
